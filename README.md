@@ -3,5 +3,7 @@ Pulls in arch Mesa packages with hardware acceleration to a Manjaro installation
 Usage:
 
 Download mesa.js
+
 chmod +x ./mesa.sh
+
 ./mesa.sh
