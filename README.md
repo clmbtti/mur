@@ -1,9 +1,7 @@
-Pulls in arch Mesa packages with hardware acceleration to an AMD64 Manjaro installation, using YES to pass confirmation to pacman.
+Mesa freeworld script for Manjaro. 
 
-Usage:
+It is  a simple python script that can be used to download Mesa from Arch Linux in order to give back to Manjaro proprietary codecs it cannot shipt due to licenses in its own Mesa package.
 
-Download mesa.sh
-
-chmod +x ./mesa.sh
-
-./mesa.sh
+Usage is trivial. 
+1 - Download the file.
+2 - Run python3 mesa-freeworld.py on your terminal
