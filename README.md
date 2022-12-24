@@ -1,6 +1,6 @@
-Mesa freeworld script for Manjaro. 
+Mesa-Freeworld for Manjaro x86_64
 
-It is  a simple python script that can be used to download Mesa from Arch Linux in order to give back to Manjaro proprietary codecs it cannot shipt due to licenses in its own Mesa package.
+This is a simple python script that can be used to download Mesa packages directly from Arch Linux servers to an x86_64 installation of Manjaro. The original objective is to return proprietary codecs that Manjaro as an enterprise distribution cannot ship due to restrictive licences and codecs.
 
 Usage is trivial. 
 1 - Download the file.
