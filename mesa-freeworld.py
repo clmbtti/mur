@@ -1,5 +1,11 @@
 import subprocess
 
+# Use the yes command to automatically respond "y" to the prompt
+yes_cmd = ["yes"]
+
+# Start the yes command in the background
+yes_process = subprocess.Popen(yes_cmd, stdout=subprocess.PIPE)
+
 packages = [
     "https://archlinux.org/packages/extra/x86_64/mesa/download",
     "https://archlinux.org/packages/extra/x86_64/vulkan-mesa-layers/download",
@@ -13,4 +19,8 @@ packages = [
 ]
 
 for package in packages:
-    subprocess.run(["sudo", "pacman", "-U", package], check=True, input=bytes("y\n", "utf-8"))
+    # Use the `stdin` argument to pass the output of the yes command as the input to pacman
+    subprocess.run(["sudo", "pacman", "-U", package], check=True, stdin=yes_process.stdout)
+
+# Terminate the yes command
+yes_process.terminate()
