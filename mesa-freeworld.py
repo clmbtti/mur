@@ -1,3 +1,4 @@
+#!/usr/bin/env python
 import subprocess
 
 # Use the yes command to automatically respond "y" to the prompt
