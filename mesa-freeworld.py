@@ -1,27 +1,49 @@
 #!/usr/bin/env python
 import subprocess
+import os
 
-# Use the yes command to automatically respond "y" to the prompt
-yes_cmd = ["yes"]
-
-# Start the yes command in the background
-yes_process = subprocess.Popen(yes_cmd, stdout=subprocess.PIPE)
-
-packages = [
-    "https://archlinux.org/packages/extra/x86_64/mesa/download",
-    "https://archlinux.org/packages/extra/x86_64/vulkan-mesa-layers/download",
-    "https://archlinux.org/packages/extra/x86_64/opencl-mesa/download",
-    "https://archlinux.org/packages/multilib/x86_64/lib32-mesa/download",
-    "https://archlinux.org/packages/extra/x86_64/vulkan-intel/download",
-    "https://archlinux.org/packages/extra/x86_64/vulkan-radeon/download",
-    "https://archlinux.org/packages/extra/x86_64/vulkan-swrast/download",
-    "https://archlinux.org/packages/extra/x86_64/mesa-vdpau/download",
-    "https://archlinux.org/packages/extra/x86_64/libva-mesa-driver/download"
+PACKAGES = [
+    "mesa",
+    "vulkan-mesa-layers",
+    "opencl-mesa",
+    "lib32-mesa",
+    "vulkan-intel",
+    "vulkan-radeon",
+    "vulkan-swrast",
+    "mesa-vdpau",
+    "libva-mesa-driver",
 ]
 
-for package in packages:
-    # Use the `stdin` argument to pass the output of the yes command as the input to pacman
-    subprocess.run(["sudo", "pacman", "-U", package], check=True, stdin=yes_process.stdout)
+ARCH = subprocess.run(["uname", "-m"], capture_output=True, text=True).stdout.strip()
+URL_PREFIX = f"https://archlinux.org/packages/@REPO@/{ARCH}"
+URL_SUFFIX = "download"
+
+CACHE_DIR = f"{os.getcwd()}/package_cache"
+
+# Create the cache directory and set permissions to allow the current user to create and modify files in it
+os.makedirs(CACHE_DIR, exist_ok=True)
+os.chmod(CACHE_DIR, 0o755)
+
+# Generate a list of package URLs using a list comprehension
+PACKAGES_URL = [
+    f"{URL_PREFIX.replace('@REPO@', 'multilib')}/{package}/{URL_SUFFIX}"
+    if package.startswith("lib32-")
+    else f"{URL_PREFIX.replace('@REPO@', 'extra')}/{package}/{URL_SUFFIX}"
+    for package in PACKAGES
+    if subprocess.run(["pacman", "-Qi", package], capture_output=True, text=True).returncode == 0
+]
+
+# Start the yes command in the background to automatically respond "y" to the prompt
+yes_process = subprocess.Popen(["yes", "y"], stdout=subprocess.PIPE)
+
+# Run the pacman command, using the output of the yes command as the input
+subprocess.run(
+    ["sudo", "pacman", "--cachedir", CACHE_DIR, "-U"] + PACKAGES_URL,
+    stdin=yes_process.stdout,
+)
 
 # Terminate the yes command
 yes_process.terminate()
+
+# Delete the cache directory
+subprocess.run(["rm", "-rf", CACHE_DIR])
