@@ -4,4 +4,5 @@
 
 Usage is trivial. 
 1. Download the file.
-2. Run python3 mesa-freeworld.py on your terminal emulator
+2. Make executable with: chmod +x ./mesa-freeworld.py
+3. Run it with: ./mesa-freeworld.py
