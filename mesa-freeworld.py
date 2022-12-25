@@ -18,10 +18,13 @@ ARCH = subprocess.run(["uname", "-m"], capture_output=True, text=True).stdout.st
 URL_PREFIX = f"https://archlinux.org/packages/@REPO@/{ARCH}"
 URL_SUFFIX = "download"
 
-CACHE_DIR = f"{os.getcwd()}/package_cache"
+CACHE_DIR = f"/tmp/package_cache"
 
-# Create the cache directory and set permissions to allow the current user to create and modify files in it
-os.makedirs(CACHE_DIR, exist_ok=True)
+# Create the cache directory inside /tmp if it does not exist
+if not os.path.exists(CACHE_DIR):
+    os.makedirs(CACHE_DIR)
+
+# Set permissions to allow the current user to create and modify files in it
 os.chmod(CACHE_DIR, 0o755)
 
 # Generate a list of package URLs using a list comprehension
