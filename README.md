@@ -4,7 +4,7 @@
 
 ## Be aware of this before running this script for the first time: it is as automated as possible to be used later in a graphical interface. When running the script, the downloaded files will be temporarily stored in /tmp and deleted once the script has finished.
 
-## If you are seeking for a more granular approach to user choice, consider [Mr-nUUb's](https://github.com/Mr-nUUb/manjaro-mesa-freeworld) fork.
+## If you are seeking for a more granular approach to user choice, consider using a fork.
 
 ## Instructions:
 1. Download the file.
