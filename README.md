@@ -9,4 +9,6 @@
 2. Make executable with: `chmod +x ./mur`
 3. Run it with: `./mur`
 
-## Notice: If you are going to save this script on your own computer, so that you can readily invoke it as a command in a terminal window, then make sure that the file has execute permission as instructed earlier, and that it resides in ~/.local/bin, which on Manjaro is part of your ${PATH}.
+## Tip: If you are going to save this script on your personal computer in order to readily invoke it as a command in a terminal window, then make sure that the file has "execute permission" as instructed earlier, and that it resides in ~/.local/bin, which on Manjaro is part of your ${PATH}. To accomplish that, follow the next two steps:
+4. Move the file to ~/.local/bin using: `mv mur ~/.local/bin/`
+5. Now you can run `mur` from any terminal window by just typing its name.
