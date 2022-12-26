@@ -6,7 +6,7 @@
 
 ## Instructions:
 1. Download the file.
-2. Make executable with: `chmod +x ./mur.py`
-3. Run it with: `./mur.py`
+2. Make executable with: `chmod +x ./mur`
+3. Run it with: `./mur`
 
 ## Notice: If you are going to save this script on your own computer, so that you can readily invoke it as a command in a terminal window, then make sure that the file has execute permission as instructed earlier, and that it resides in ~/.local/bin, which on Manjaro is part of your ${PATH}.
