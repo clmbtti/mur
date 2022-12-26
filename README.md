@@ -1,4 +1,4 @@
-# MUR - Mesa-Freeworld for Manjaro
+# MUR: Mesa-Freeworld for Manjaro
 
 ## This is a simple python script that can be used to download Mesa packages directly from Arch Linux servers to an installation of Manjaro. The original objective is to return proprietary codecs that Manjaro as an enterprise distribution cannot ship due to restrictive licences and codecs.
 
