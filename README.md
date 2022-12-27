@@ -5,7 +5,7 @@
 ## Be aware of this before running this script for the first time: It was developed to be as automated as possible to be used eventually later in a graphical interface. When running the script, the downloaded files will be temporarily stored in /tmp and deleted once the script has finished.
 
 ## Instructions:
-1. Download the file.
+1. Download the file `mur` from the [repository](https://github.com/clmbtti/mur).
 2. Make executable with: `chmod +x ./mur`
 3. Run it with: `./mur`
 
